@@ -1,23 +1,45 @@
-﻿# dnd-rag-chat
+# Source Tree Startup Guide
 
-Dungeons & Dragons RAG assistant with a FastAPI backend and a React/Vite frontend.
+This repository keeps the live application code under `src/backend` and `src/frontend`.
 
-## Repository Map
+## What Runs Where
 
-- `specs/`: project problem statement, requirements, and acceptance criteria
-- `.codex/`: AI guidance, prompts, agents, and workflow notes
-- `src/backend`: FastAPI route layer and RAG query logic
-- `src/frontend`: React chat UI, markdown rendering, and styling
-- `tests/`: validation examples and smoke checks
-- `docs/`: repository knowledge base
+- `src/backend`: FastAPI app and RAG pipeline
+- `src/frontend`: React/Vite chat UI
 
-## Quick Start
+## Start the Backend
 
-1. Read `AGENTS.md`
-2. Run `./init.sh`
-3. Start the backend from `src/backend`
-4. Start the frontend from `src/frontend`
+Open a terminal in the backend folder and run:
 
-## Current Focus
+```powershell
+cd \dnd-rag-chat\src\backend
+py -m uvicorn api:app --reload --host 127.0.0.1 --port 8000
+```
 
-The app currently answers Dungeons & Dragons questions through a chat interface and is structured to grow into a companion app with cards, actions, citations, and trackers.
+If `py` is not available, use your installed Python launcher or activate your virtual environment first.
+
+## Start the Frontend
+
+Open a second terminal in the frontend folder and run:
+
+```powershell
+cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\frontend
+cmd /c npm run dev
+```
+
+If you prefer plain `npm run dev`, run it in a shell that allows the `npm` script shim.
+
+## Optional Build Check
+
+To verify the frontend production build:
+
+```powershell
+cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\frontend
+cmd /c npm run build
+```
+
+## Notes
+
+- The RAG logic is not a separate service; it runs inside the FastAPI backend when `/ask` is called.
+- The frontend talks to the backend at `http://localhost:8000/ask`.
+- Start the backend before using the chat UI.

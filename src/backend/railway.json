@@ -1,6 +1,10 @@
 {
   "$schema": "https://schema.railway.com",
   "builder": "RAILPACK",
-  "buildCommand": "python -m pip install -r requirements.txt",
-  "startCommand": "python -m uvicorn api:app --host 0.0.0.0 --port $PORT"
+  "build": {
+    "buildCommand": "python -m pip install -r requirements.txt"
+  },
+  "deploy": {
+    "startCommand": "python -m uvicorn api:app --host 0.0.0.0 --port $PORT"
+  }
 }

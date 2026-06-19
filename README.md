@@ -1,4 +1,4 @@
-# Source Tree Startup Guide
+# RAG Source Tree Startup Guide
 
 This repository keeps the live application code under `src/backend` and `src/frontend`.
 
@@ -23,7 +23,7 @@ If `py` is not available, use your installed Python launcher or activate your vi
 Open a second terminal in the frontend folder and run:
 
 ```powershell
-cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\frontend
+cd C:\dnd-rag-chat\src\frontend
 cmd /c npm run dev
 ```
 
@@ -34,7 +34,7 @@ If you prefer plain `npm run dev`, run it in a shell that allows the `npm` scrip
 To verify the frontend production build:
 
 ```powershell
-cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\frontend
+cd C:\dnd-rag-chat\src\frontend
 cmd /c npm run build
 ```
 

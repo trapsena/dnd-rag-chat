@@ -5,7 +5,7 @@ export default defineConfig({
   plugins: [react()],
   server: {
     allowedHosts: [
-      'fantastic-kindness-production-e00e.up.railway.app'
+      'feisty-liberation-production.up.railway.app'
     ]
   }
 })

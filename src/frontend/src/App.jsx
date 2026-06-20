@@ -7,6 +7,10 @@ import DiceInfoWindow from "./components/DiceInfoWindow.jsx";
 import CharacterSheetWindow from "./components/CharacterSheetWindow.jsx";
 
 const DICE_SIDES = [4, 6, 8, 10, 12, 20, 100];
+const API_BASE_URL = (import.meta.env.VITE_API_URL || "http://localhost:8000").replace(
+  /\/$/,
+  ""
+);
 const ABILITY_SCORES = [
   "Strength",
   "Dexterity",
@@ -432,7 +436,7 @@ function App() {
     setLoading(true);
 
     try {
-      const response = await fetch("http://localhost:8000/ask", {
+      const response = await fetch(`${API_BASE_URL}/ask`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

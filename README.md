@@ -166,6 +166,6 @@ Then set `VITE_API_URL` on the frontend service to the backend Railway URL.
 
 ## Notes
 
-- The backend RAG stack is lazy-loaded so the API can boot cleanly even if the model or vector store is slow to initialize.
-- The frontend keeps chat markdown separate from styling so the UI can evolve into richer cards and actions later.
-- Retrieval metadata is preserved in the backend so citations can be added later without reworking the pipeline.
+- The RAG logic is not a separate service; it runs inside the FastAPI backend when `/ask` is called.
+- The frontend talks to the backend at `http://localhost:8000/ask`.
+- Start the backend before using the chat UI.

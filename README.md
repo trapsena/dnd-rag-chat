@@ -1,34 +1,34 @@
 # D&D RAG Chat
 
-A Dungeons & Dragons assistant built with a FastAPI backend, a React/Vite frontend, and a local RAG pipeline for answering rules and lore questions.
+Assistente de Dungeons & Dragons construído com um backend FastAPI, um frontend React/Vite e um pipeline RAG local para responder perguntas sobre regras, lore e mecânicas do jogo.
 
-## What It Does
+## O que este projeto faz
 
-This project lets you:
+Com este aplicativo você pode:
 
-- Ask D&D questions through a chat interface
-- Receive markdown-formatted answers from the RAG backend
-- Roll dice locally without calling the API
-- Use quick dice buttons for common dice sizes
-- Roll character ability scores with `/roll stats`
-- Open a floating character sheet window from the header
-- Open a dice reference panel with supported commands and examples
+- Fazer perguntas de D&D em uma interface de chat
+- Receber respostas formatadas em Markdown vindas do backend RAG
+- Rolar dados localmente sem chamar a API
+- Usar botões rápidos para dados comuns
+- Rolar atributos de personagem com `/roll stats`
+- Abrir uma janela flutuante da ficha de personagem no cabeçalho
+- Abrir um painel de ajuda com os comandos de dados suportados e exemplos
 
-The app is designed so the chat can grow into a richer D&D companion with reusable cards, actions, and future citations.
+O projeto foi pensado para evoluir para um companheiro de mesa mais completo, com cartões reutilizáveis, ações e citações futuras.
 
-## Main Features
+## Funcionalidades principais
 
-### RAG Chat
+### Chat RAG
 
-- FastAPI exposes a single `/ask` endpoint
-- The backend loads a Chroma vector store and queries a Groq model
-- Responses are rendered in the frontend with markdown support
+- O FastAPI expõe um endpoint único `/ask`
+- O backend carrega um banco vetorial Chroma e consulta um modelo Groq
+- As respostas são renderizadas no frontend com suporte a Markdown
 
-### Local Dice Commands
+### Comandos locais de dados
 
-The frontend handles dice commands locally and does not send them to the RAG API.
+Os comandos de dados são processados no frontend e não são enviados ao backend RAG.
 
-Supported examples:
+Exemplos suportados:
 
 - `/r 3d6+2`
 - `/roll 2d6+5 + 1d8`
@@ -39,64 +39,64 @@ Supported examples:
 - `/roll 2d20kl + 5`
 - `/roll stats`
 
-Dice modifiers supported:
+Modificadores de dados suportados:
 
-- `kh` or `k` - keep highest
-- `kl` - keep lowest
-- `dl` or `d` - drop lowest
-- `dh` - drop highest
+- `kh` ou `k` - manter o maior
+- `kl` - manter o menor
+- `dl` ou `d` - descartar o menor
+- `dh` - descartar o maior
 
-### Ability Score Rolling
+### Rolagem de atributos
 
-`/roll stats` rolls six ability scores for:
+O comando `/roll stats` gera seis atributos de personagem para:
 
-- Strength
-- Dexterity
-- Constitution
-- Intelligence
-- Wisdom
-- Charisma
+- Força
+- Destreza
+- Constituição
+- Inteligência
+- Sabedoria
+- Carisma
 
-Each score uses 4d6 drop lowest.
+Cada atributo usa 4d6 descartando o menor resultado.
 
-### Character Sheet Window
+### Janela da ficha
 
-- The `Character` button opens a standalone character sheet inside the app
-- The window is draggable and resizable
-- The chat remains usable while the sheet is open
+- O botão `Character` abre uma ficha de personagem dentro do app
+- A janela pode ser arrastada e redimensionada
+- O chat continua utilizável enquanto a ficha está aberta
 
-### Dice Info Panel
+### Painel de ajuda
 
-- The `Info` button opens a help panel beside the Character button
-- It lists all supported dice commands
-- It includes a combat roll example
-- It reminds you to read spell details before rolling for spells
+- O botão `Info` abre um painel de ajuda ao lado do botão de personagem
+- Ele lista todos os comandos de dados suportados
+- Inclui um exemplo de rolagem de combate
+- Lembra de ler a descrição de magias antes de rolar efeitos relacionados a elas
 
-## Project Structure
+## Estrutura do projeto
 
-- `src/backend` - FastAPI app and RAG query logic
-- `src/frontend` - React chat UI, markdown rendering, styling, and local dice handling
-- `specs` - project requirements and acceptance criteria
-- `docs` - architecture notes and project documentation
-- `.codex` - prompt and workflow guidance for Codex sessions
-- `tests` - validation notes and smoke-test guidance
+- `src/backend` - aplicação FastAPI e lógica de consulta do RAG
+- `src/frontend` - interface de chat em React, renderização Markdown, estilo e dados locais
+- `specs` - requisitos e critérios de aceitação do projeto
+- `docs` - documentação e notas de arquitetura
+- `.codex` - prompts e orientações para sessões do Codex
+- `tests` - notas de validação e smoke tests
 
-## Local Development
+## Desenvolvimento local
 
 ### Backend
 
-From the backend folder:
+Na pasta do backend:
 
 ```powershell
 cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\backend
 py -m uvicorn api:app --reload --host 127.0.0.1 --port 8000
 ```
 
-If `py` is not available, use your installed Python launcher or virtual environment.
+Se `py` não estiver disponível, use o launcher do Python instalado no sistema ou ative seu ambiente virtual.
 
 ### Frontend
 
-From the frontend folder:
+Na pasta do frontend:
 
 ```powershell
 cd C:\Users\goten\Documents\mycloset\cod\RAG\laboratorio_inovacao_2026_1-aula10\dnd-rag-chat\src\frontend
@@ -104,68 +104,69 @@ cmd /c npm install
 cmd /c npm run dev
 ```
 
-For a production build check:
+Para verificar o build de produção:
 
 ```powershell
 cmd /c npm run build
 ```
 
-## Environment Variables
+## Variáveis de ambiente
 
 ### Backend
 
-The backend expects the model and embedding environment variables used by the RAG stack, especially:
+O backend depende das variáveis do modelo e do stack de embeddings usadas pelo RAG, especialmente:
 
 - `GROQ_API_KEY`
 
-The exact set depends on your local model and retrieval setup.
+O conjunto exato pode variar conforme o ambiente e a configuração local.
 
 ### Frontend
 
-The frontend can point to a deployed backend by setting:
+O frontend pode apontar para um backend publicado configurando:
 
 - `VITE_API_URL`
 
-Example:
+Exemplo:
 
 ```text
 VITE_API_URL=https://dnd-rag-chat-production.up.railway.app
 ```
 
-If `VITE_API_URL` is not set, the frontend falls back to `http://localhost:8000`.
+Se `VITE_API_URL` não estiver definido, o frontend usa `http://localhost:8000`.
 
-## Railway Deployment
+## Deploy na Railway
 
-This repo includes Railway config files for both services:
+O repositório inclui arquivos de configuração para os dois serviços:
 
 - [src/backend/railway.json](src/backend/railway.json)
 - [src/frontend/railway.json](src/frontend/railway.json)
 
-Recommended setup:
+Configuração recomendada:
 
-### Backend service
+### Serviço do backend
 
-- Root directory: `src/backend`
-- Build: install Python requirements
-- Start: run Uvicorn on `0.0.0.0` and `$PORT`
+- Diretório raiz: `src/backend`
+- Build: instalar as dependências do Python
+- Start: executar o Uvicorn em `0.0.0.0` e `$PORT`
 
-### Frontend service
+### Serviço do frontend
 
-- Root directory: `src/frontend`
+- Diretório raiz: `src/frontend`
 - Build: `npm install && npm run build`
 - Start: `npm run preview -- --host 0.0.0.0 --port $PORT`
 
-Then set `VITE_API_URL` on the frontend service to the backend Railway URL.
+Depois, configure `VITE_API_URL` no serviço do frontend com a URL do backend na Railway.
 
-## Startup Workflow
+## Fluxo de inicialização
 
-1. Read `AGENTS.md`
-2. Run `./init.sh`
-3. Start the backend from `src/backend`
-4. Start the frontend from `src/frontend`
+1. Leia `AGENTS.md`
+2. Execute `./init.sh`
+3. Inicie o backend em `src/backend`
+4. Inicie o frontend em `src/frontend`
 
-## Notes
+## Observações
 
-- The RAG logic is not a separate service; it runs inside the FastAPI backend when `/ask` is called.
-- The frontend talks to the backend at `http://localhost:8000/ask`.
-- Start the backend before using the chat UI.
+- A lógica RAG não é um serviço separado; ela roda dentro do backend FastAPI quando `/ask` é chamado.
+- O backend foi ajustado para carregar o stack RAG de forma preguiçosa, reduzindo falhas na inicialização.
+- O frontend mantém a lógica de chat separada do estilo para facilitar futuras evoluções com cartões, ações e citações.
+- Os metadados de recuperação são preservados para permitir citações no futuro sem reestruturar o pipeline.

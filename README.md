@@ -43,4 +43,4 @@ cmd /c npm run build
 - The RAG logic is not a separate service; it runs inside the FastAPI backend when `/ask` is called.
 - The frontend talks to the backend at `http://localhost:8000/ask`.
 - Start the backend before using the chat UI.
--if ran through deployments then no need to worry about it.
+-if ran through deployments then no need to worry about it

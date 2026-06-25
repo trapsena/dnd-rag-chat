@@ -1,0 +1,52 @@
+﻿{
+  "features": [
+    {
+      "id": "feat-001",
+      "name": "Harness Baseline",
+      "description": "Agent startup docs, state files, and verification commands are in place for the D&D RAG assistant",
+      "dependencies": [],
+      "status": "completed",
+      "evidence": "AGENTS.md, feature_list.json, progress.md, session-handoff.md, init.sh"
+    },
+    {
+      "id": "feat-002",
+      "name": "Backend Chat Flow",
+      "description": "Keep FastAPI routes thin while the RAG pipeline and source metadata stay in backend service modules",
+      "dependencies": ["feat-001"],
+      "status": "completed",
+      "evidence": "Backend deployment config added at src/backend/railway.json with nested build/deploy Railway settings, and backend startup was hardened by deferring RAG initialization until request time."
+    },
+    {
+      "id": "feat-003",
+      "name": "Frontend Chat UI",
+      "description": "Keep chat rendering, markdown support, and styling separated in the React app",
+      "dependencies": ["feat-001"],
+      "status": "not-started",
+      "evidence": "Partial frontend chat UI work: local /roll commands, keep/drop dice modifiers, stat-roll command, dice picker, static header component, sticky header layout, dice info overlay, frontend Railway config, and configurable backend API URL support added."
+    },
+    {
+      "id": "feat-004",
+      "name": "Reusable D&D Cards",
+      "description": "Build reusable spell, monster, weapon, item, NPC, and character card components with future action buttons",
+      "dependencies": ["feat-003"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-005",
+      "name": "Verification Coverage",
+      "description": "Add tests and smoke checks for API behavior, frontend builds, markdown rendering, and graceful error handling",
+      "dependencies": ["feat-002", "feat-003"],
+      "status": "not-started",
+      "evidence": ""
+    },
+    {
+      "id": "feat-006",
+      "name": "Character Sheet Window",
+      "description": "Open the standalone D&D character sheet inside the chat app from a header button without disrupting the existing RAG flow",
+      "dependencies": ["feat-003"],
+      "status": "completed",
+      "evidence": "src/frontend/public/character-sheet, src/frontend/src/components/CharacterSheetWindow.jsx, src/frontend/src/components/AppHeader.jsx, src/frontend/src/App.jsx, src/frontend/src/App.css"
+    }
+  ]
+}

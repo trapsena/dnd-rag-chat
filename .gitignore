@@ -1,10 +1,2 @@
 node_modules
-.codex
-docs
-tests
-AGENTS.md
-feature_list.json
-init.sh
-progress.md
-specs
-session-handoff.md
+
